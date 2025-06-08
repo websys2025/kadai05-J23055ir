@@ -16,6 +16,7 @@
             // ここにコードを書く
             const endpoint ="https://msearch.gsi.go.jp/address-search/AddressSearch"
             const query = myForm.form_data.value.trim();
+            const url = `${endpoint}?q=${encodeURIComponent(query)}`;
             
             document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
             document.apiform.reset();
