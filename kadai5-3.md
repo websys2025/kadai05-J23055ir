@@ -11,6 +11,8 @@
   * APIの名称：緯度経度API
   * 参照URL：https://maps.gsi.go.jp/development/ichiran.html
 * エンドポイントと機能
+  * エンドポイント；https://msearch.gsi.go.jp/address-search/AddressSearch
+  * 機能：地名を入れると、その地名の緯度と経度が出力される
 * リクエストとレスポンスのフォーマット
 ### Q3-3. 感想
 * 今回の課題で苦労したこと
