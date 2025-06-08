@@ -4,17 +4,29 @@
     <title>演習課題5-2：外部APIの呼び出しテスト</title>
 </head>
 <body>
-    <h1 id="msg">何かのAPI</h1>
+    <h1 id="msg">緯度経度API</h1>
     <form name="apiform"><p>
-        何かのフォーム：<input type="text" name="form_data">
+        日本の地名を入力：<input type="text" name="form_data">
         <button type="button" id="btn1" onclick="some_api(this.form)">実行</button>
     </p></form>
     
-    <div id="result"></div>
+    <div id="result">結果はここに表示</div>
     <script>
         async function some_api(myForm) {
             // ここにコードを書く
-            document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
+            const endpoint ="https://msearch.gsi.go.jp/address-search/AddressSearch"
+            const query = myForm.form_data.value.trim();
+            const url = `${endpoint}?q=${encodeURIComponent(query)}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data.length > 0) {
+                const i = data[0].geometry.coordinates[1];
+                const k = data[0].geometry.coordinates[0];
+                document.getElementById("result").innerHTML = `「${query}」の緯度: ${i}, 経度: ${k}`;
+            }
+            
+            //document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
             document.apiform.reset();
         }
     </script>
