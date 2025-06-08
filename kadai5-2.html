@@ -20,6 +20,12 @@
             const response = await fetch(url);
             const data = await response.json();
             
+            if (data.length > 0) {
+                const i = data[0].geometry.coordinates[1];
+                const k = data[0].geometry.coordinates[0];
+                document.getElementById("result").innerHTML = `「${query}」の緯度: ${i}, 経度: ${k}`;
+            }
+            
             document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
             document.apiform.reset();
         }
